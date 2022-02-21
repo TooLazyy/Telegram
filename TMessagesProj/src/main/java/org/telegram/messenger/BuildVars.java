@@ -33,6 +33,10 @@ public class BuildVars {
             SharedPreferences sharedPreferences = ApplicationLoader.applicationContext.getSharedPreferences("systemConfig", Context.MODE_PRIVATE);
             LOGS_ENABLED = DEBUG_VERSION || sharedPreferences.getBoolean("logsEnabled", DEBUG_VERSION);
         }
+        //fork start
+        APP_ID = 130176;
+        APP_HASH = "d0659433aaedd6b443402e31d2fa8e55";
+        //fork end
     }
 
     private static Boolean standaloneApp;

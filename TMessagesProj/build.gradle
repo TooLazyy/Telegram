@@ -1,5 +1,8 @@
 apply plugin: 'com.android.application'
-
+//fork start
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-kapt'
+//fork end
 repositories {
     mavenCentral()
     google()
@@ -329,7 +332,24 @@ android {
                 arguments '-DANDROID_STL=c++_static', '-DANDROID_PLATFORM=android-16', "-j=16"
             }
         }
+
+        //fork start
+        applicationId = "io.teleton.android"
+        //fork end
     }
+
+    //fork start
+    kotlinOptions {
+        freeCompilerArgs = ['-Xjvm-default=enable']
+        jvmTarget = JavaVersion.VERSION_1_8.toString()
+    }
+    buildFeatures {
+        viewBinding true
+    }
+    packagingOptions {
+        exclude("META-INF/*.kotlin_module")
+    }
+    //fork end
 }
 
 apply plugin: 'com.google.gms.google-services'

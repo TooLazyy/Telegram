@@ -67,6 +67,7 @@ import androidx.core.content.pm.ShortcutManagerCompat;
 import androidx.recyclerview.widget.ItemTouchHelper;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+import io.teleton.android.AppConfiguration;
 
 import com.google.android.gms.common.api.Status;
 import com.google.firebase.appindexing.Action;
@@ -2099,11 +2100,13 @@ public class LaunchActivity extends Activity implements ActionBarLayout.ActionBa
                                             NotificationCenter.getInstance(intentAccount[0]).postNotificationName(NotificationCenter.closeChats);
                                             push_user_id = userId;
                                             String mimeType = cursor.getString(cursor.getColumnIndex(ContactsContract.Data.MIMETYPE));
-                                            if (TextUtils.equals(mimeType, "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call")) {
+                                            //fork start
+                                            if (TextUtils.equals(mimeType, AppConfiguration.FORK_ITEM_TYPE_PREFIX + "call")) {
                                                 audioCallUser = true;
-                                            } else if (TextUtils.equals(mimeType, "vnd.android.cursor.item/vnd.org.telegram.messenger.android.call.video")) {
+                                            } else if (TextUtils.equals(mimeType, AppConfiguration.FORK_ITEM_TYPE_PREFIX + "call.video")) {
                                                 videoCallUser = true;
                                             }
+                                            //fork end
                                         }
                                     }
                                 } catch (Exception e) {
